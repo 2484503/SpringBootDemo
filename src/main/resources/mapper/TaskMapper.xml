@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.TaskMapper">
+    <resultMap id="BaseResultMap" type="com.example.demo.vo.Task">
+        <constructor>
+            <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="table_name" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="last_time" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="fraction" jdbcType="DECIMAL" javaType="java.math.BigDecimal"/>
+            <arg column="type" jdbcType="TINYINT" javaType="java.lang.Integer"/>
+            <arg column="status" jdbcType="TINYINT" javaType="java.lang.Integer"/>
+            <arg column="valid" jdbcType="TINYINT" javaType="java.lang.Integer"/>
+            <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, table_name, last_time, fraction, type, status, valid, create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from h2018_task
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectByTableName" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from h2018_task
+        where table_name = #{table_name,jdbcType=VARCHAR}
+    </select>
+</mapper>

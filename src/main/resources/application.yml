@@ -1,0 +1,28 @@
+spring:
+  profiles:
+    active: dev
+
+mybatis:
+  typeAliasesPackage: com.example.demo.vo
+  mapperLocations: classpath:mapper/*.xml
+
+---
+
+spring:
+  datasource:
+    my:
+      url: jdbc:mysql://localhost:3306/test?serverTimezone=UTC
+      username: root
+      password: root
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      type: com.alibaba.druid.pool.DruidDataSource
+      isPrimary: true
+
+logging:
+  level:
+    com.example.demo.dao: debug
+
+---
+
+jobs:
+  schedule: 0/5 * * * * ?

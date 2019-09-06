@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>测试接口使用HTML</title>
+    <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            console.log("进入了");
+
+            $("#button").click(function () {
+
+                var data = {
+                    "id": $("#id").val(),
+                    "tableName": $("#tableName").val(),
+                    "lastTime": null,
+                    "fraction": 0.123,
+                    "type": null,
+                    "status": null,
+                    "valid": null,
+                    "createTime": null,
+                    "updateTime": null
+                };
+
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify(data),
+                    url: "http://localhost:8080/testNotNull",
+                    success: function (result) {
+                        console.log(result);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<form>
+    <input type="text" id="id" value="123">
+    <input type="text" id="tableName" value="tableName">
+    <input type="button" id="button" value="提交">
+</form>
+</body>
+</html>
