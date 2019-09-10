@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -11,7 +10,6 @@ import java.util.concurrent.Executors;
  * @version 1.0
  * @date 2019/5/14 18:09
  */
-@RestController
 public class ThreadController {
 
     private static int count = 2;

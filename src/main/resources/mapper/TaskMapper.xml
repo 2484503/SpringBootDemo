@@ -24,7 +24,7 @@
         where id = #{id,jdbcType=INTEGER}
     </select>
 
-    <select id="selectByTableName" resultMap="BaseResultMap" parameterType="java.lang.String">
+    <select id="selectByTableName" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from h2018_task

@@ -19,7 +19,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * 　　 1. 没有其他线程的读锁
  * 　　 2. 没有其他线程的写锁
  */
-@RestController
+@RestController("readWriteLock")
 @Slf4j
 public class ReadWriteLockController {
 

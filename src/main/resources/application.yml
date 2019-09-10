@@ -20,7 +20,7 @@ spring:
 
 logging:
   level:
-    com.example.demo.dao: debug
+    com.example.demo.mapper: debug
 
 ---
 
