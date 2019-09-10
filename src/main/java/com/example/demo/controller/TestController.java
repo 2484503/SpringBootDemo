@@ -7,10 +7,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 
-@RestController
+@RestController("test")
 @Slf4j
 public class TestController {
 
@@ -35,8 +36,20 @@ public class TestController {
         return testService.selectListByTableName(tableName);
     }
 
+    /**
+     * @api {post} /test/testNotNull 测试@NotNull对字段的校验
+     * @apiDescription 使用@Valid标签和@NotNull标签，对字段的空值进行校验，并返回自定义信息
+     * @apiName testNotNull
+     * @apiGroup test
+     * @apiVersion 1.0.0
+     *
+     * @apiParam {Task} task 任务实体
+     *
+     * @apiSampleRequest http://localhost:8080/html/test.html
+     * @apiSuccess (success 2000) {Task}   task   测试对象信息
+     */
     @PostMapping(value = "testNotNull")
-    Task testNotNull(@RequestBody Task task) {
+    Task testNotNull(@Valid @RequestBody Task task) {
         Map<String, Object> map = new HashMap<>();
         map.put("123", new Task());
         log.info("查询了={}", map);

@@ -8,11 +8,17 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-
 /**
- *  此Controller为了理解读写锁的应用场景而实现的Demo，其中知识点可查看
- *  https://blog.csdn.net/training2007/article/details/78837096
- * */
+ * 此Controller为了理解读写锁的应用场景而实现的Demo，其中知识点可查看
+ * https://blog.csdn.net/training2007/article/details/78837096
+ * <p>
+ * 线程进入读锁的前提条件：
+ * 　　 1. 没有其他线程的写锁
+ * 　　 2. 没有写请求，或者有写请求但调用线程和持有锁的线程是同一个线程
+ * 进入写锁的前提条件：
+ * 　　 1. 没有其他线程的读锁
+ * 　　 2. 没有其他线程的写锁
+ */
 @RestController
 @Slf4j
 public class ReadWriteLockController {
@@ -42,8 +48,6 @@ public class ReadWriteLockController {
 
             lock.writeLock().unlock();
             System.out.println(Thread.currentThread() + "write unlock");
-
         }
-
     }
 }
