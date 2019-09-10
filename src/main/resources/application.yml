@@ -2,6 +2,9 @@ spring:
   profiles:
     active: dev
 
+server:
+  port: 8080
+
 mybatis:
   typeAliasesPackage: com.example.demo.vo
   mapperLocations: classpath:mapper/*.xml

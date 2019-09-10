@@ -11,8 +11,9 @@ import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 
-@RestController("test")
 @Slf4j
+@RestController
+@RequestMapping("test")
 public class TestController {
 
     private final CommonService commonService;
@@ -30,6 +31,16 @@ public class TestController {
         return testService.selectList(id);
     }
 
+    /**
+     * @api {get} /test/selectByTableName 根据tableName查询
+     * @apiDescription 根据tableName查询数据库
+     * @apiName selectByTableName
+     * @apiGroup test
+     * @apiVersion 1.0.0
+     * @apiParam {String} [tableName=tableA] 表名
+     * @apiSampleRequest http://localhost:8080/test/selectByTableName
+     * @apiSuccess (success 2000) {Task}   task   测试对象信息
+     */
     @GetMapping("selectByTableName")
     Task selectByTableName(@RequestParam("tableName") String tableName) {
         System.out.println("查询了=" + tableName);
@@ -42,10 +53,12 @@ public class TestController {
      * @apiName testNotNull
      * @apiGroup test
      * @apiVersion 1.0.0
-     *
-     * @apiParam {Task} task 任务实体
-     *
-     * @apiSampleRequest http://localhost:8080/html/test.html
+     * @apiParam {id} 123 任务实体
+     * @apiSampleRequest http://localhost:8080/test/testNotNull
+     * @apiParamExample {json} Request-Example:
+     * {
+     * "id": 4711
+     * }
      * @apiSuccess (success 2000) {Task}   task   测试对象信息
      */
     @PostMapping(value = "testNotNull")
