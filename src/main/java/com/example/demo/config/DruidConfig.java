@@ -14,8 +14,6 @@ import javax.sql.DataSource;
 
 /**
  * 开启Druid监控功能，需要在application.yml文件中以spring.datasource开头的信息配置相关信息.
- *
- * @author huxiaoguang
  */
 @Configuration
 public class DruidConfig {

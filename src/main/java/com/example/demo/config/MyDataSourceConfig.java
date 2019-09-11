@@ -13,6 +13,8 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import javax.sql.DataSource;
 
 /**
+ * 数据库配置
+ *
  * @author lijn
  * @version 1.0
  * @date 2019/8/9 09:39
