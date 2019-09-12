@@ -6,6 +6,7 @@ import com.example.demo.model.vo.Country;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author lijn
@@ -24,10 +25,10 @@ public class CountryService {
      * @param countryParam 查询参数
      * @return 国家信息
      */
-    public Country selectCountry(CountryParam countryParam) {
+    public List<Country> selectCountry(CountryParam countryParam) {
 
-        Country country = countryMapper.selectCountryByParam(countryParam);
+        List<Country> countryList = countryMapper.selectCountryByParam(countryParam);
 
-        return country;
+        return countryList;
     }
 }

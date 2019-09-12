@@ -4,9 +4,13 @@ import com.example.demo.model.param.CountryParam;
 import com.example.demo.model.vo.Country;
 import com.example.demo.services.CountryService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -28,10 +32,10 @@ public class CountryController {
      * @apiSuccess (success 200) {Country}   country   国家对象信息
      */
     @GetMapping("selectCountry")
-    Country selectCountry(@ModelAttribute CountryParam countryParam) {
+    List<Country> selectCountry(@ModelAttribute CountryParam countryParam) {
 
-        Country country = countryService.selectCountry(countryParam);
+        List<Country> countryList = countryService.selectCountry(countryParam);
 
-        return country;
+        return countryList;
     }
 }

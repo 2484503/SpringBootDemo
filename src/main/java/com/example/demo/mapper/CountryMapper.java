@@ -3,7 +3,9 @@ package com.example.demo.mapper;
 import com.example.demo.model.param.CountryParam;
 import com.example.demo.model.vo.Country;
 
+import java.util.List;
+
 public interface CountryMapper {
 
-    Country selectCountryByParam(CountryParam countryParam);
+    List<Country> selectCountryByParam(CountryParam countryParam);
 }
