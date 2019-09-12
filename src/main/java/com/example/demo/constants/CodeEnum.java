@@ -5,18 +5,18 @@ package com.example.demo.constants;
  * @version 1.0
  * @date 2019/5/23 16:42
  */
-public enum TestEnum {
+public enum CodeEnum {
 
     SUCCESS(1),
     FAIL(2);
 
     private int code;
 
-    private TestEnum(int code) {
+    private CodeEnum(int code) {
         this.code = code;
     }
 
-    public static TestEnum getTestEnumByCode(int code) {
+    public static CodeEnum getTestEnumByCode(int code) {
         return FAIL;
     }
 }

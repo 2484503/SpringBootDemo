@@ -1,15 +1,19 @@
-package com.example.demo.controller;
+package com.example.demo.backup;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
+ * 测试线程池不够用会出现什么效果
+ *
  * @author lijn
  * @version 1.0
  * @date 2019/5/14 18:09
  */
+@RequestMapping("thread")
 public class ThreadController {
 
     private static int count = 2;
@@ -17,8 +21,8 @@ public class ThreadController {
     static ExecutorService threadPool = Executors.newFixedThreadPool(count);
 
     @GetMapping("/threadTest")
-    String home() {
-        return "Hello World!";
+    void home() {
+        startThreadExeDemo();
     }
 
     /**
@@ -30,10 +34,6 @@ public class ThreadController {
 
         // 调用多线程的utils
         startExeThread(r, count);
-    }
-
-    public static void main(String[] args) {
-        new ThreadController().startThreadExeDemo();
     }
 
     /**

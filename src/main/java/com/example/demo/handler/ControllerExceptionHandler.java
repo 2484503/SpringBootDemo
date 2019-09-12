@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * 异常处理器
+ *
  * @author lijn
  * @version 1.0
  * @date 2019/5/21 17:09

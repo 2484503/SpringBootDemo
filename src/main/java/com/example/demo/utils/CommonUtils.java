@@ -1,12 +1,14 @@
 package com.example.demo.utils;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.util.Assert;
 
 import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 
 /**
+ * 在此维护一些自己写的通用的工具类
+ *
  * @author lijn
  * @version 1.0
  * @date 2019/8/2 10:52
@@ -14,26 +16,86 @@ import java.util.Arrays;
 public class CommonUtils {
 
     /**
-     * 将data Double类型的字段值设置默认值
+     * 给entity的clazz类型字段赋值默认值defaultValue
      *
-     * @param data
+     * @param entity       赋值的实体类
+     * @param clazz        设置Class类型的字段默认值
+     * @param defaultValue 默认值
      */
-    public static <T> void setFiledDefault(T data) {
-        Class clazz = data.getClass();
-        Field[] fieldArray = clazz.getDeclaredFields();
+    public static <T> void setEntityFiledDefault(T entity, Class clazz, Object defaultValue) throws IllegalAccessException {
+        if (entity == null) {
+            return;
+        }
 
-        Arrays.stream(fieldArray)
-                .filter(field -> field.getType() == Double.class)
-                .forEach(field -> {
-                    field.setAccessible(true);
-                    try {
-                        if (field.get(data) == null) {
-                            field.set(data, 0.0);
-                        }
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    }
-                });
+        Class dataClazz = entity.getClass();
+        Field[] fields = dataClazz.getDeclaredFields();
+        int count = fields.length;
+
+        for (int index = 0; index < count; index++) {
+            Field field = fields[index];
+            if (field.getType() != clazz) {
+                continue;
+            }
+            if (!field.isAccessible()) {
+                field.setAccessible(true);
+            }
+            if (field.get(entity) == null) {
+                field.set(entity, defaultValue);
+            }
+        }
+    }
+
+    /**
+     * 将dataSource的clazz类型的属性值，copy到dataTarget的String同名字段中
+     *
+     * @param dataSource
+     * @param dataTarget
+     * @param clazz
+     */
+    public static <T> void copyValueToStr(T dataSource, T dataTarget, Class clazz) throws IllegalAccessException {
+        Assert.notNull(dataSource, "dataSource must not be null");
+        Assert.notNull(dataTarget, "dataTarget must not be null");
+
+        Field[] fieldsSource = dataSource.getClass().getDeclaredFields();
+        Field[] fieldsTarget = dataTarget.getClass().getDeclaredFields();
+
+        int count = fieldsSource.length;
+
+        for (int index = 0; index < count; index++) {
+            Field fieldSource = fieldsSource[index];
+            if (fieldSource.getType() != clazz) {
+                continue;
+            }
+            int matchIndex = isContainFiled(fieldsTarget, fieldSource.getName());
+            if (matchIndex < 0) {
+                continue;
+            }
+            Field fieldTarget = fieldsTarget[matchIndex];
+            if (!fieldTarget.isAccessible()) {
+                fieldTarget.setAccessible(true);
+            }
+            if (!fieldSource.isAccessible()) {
+                fieldSource.setAccessible(true);
+            }
+            Object object = fieldSource.get(dataSource);
+            if (object == null) {
+                continue;
+            }
+            fieldTarget.set(dataTarget, object.toString());
+        }
+    }
+
+    /**
+     * 根据属性名匹配字段，返回index
+     */
+    private static int isContainFiled(Field[] fields, String propertyName) {
+        int count = fields.length;
+        for (int index = 0; index < count; index++) {
+            if (fields[index].getName().equals(propertyName)) {
+                return index;
+            }
+        }
+        return -1;
     }
 
     /**
@@ -41,7 +103,7 @@ public class CommonUtils {
      * <p>
      * 0xC0对应的是11000000，0x80对应的是10000000
      * <p>
-     * 关于编码的资料参考https://www.cnblogs.com/lslk89/p/6898526.html，在此感谢郭海东同志
+     * 关于编码的资料参考https://www.cnblogs.com/lslk89/p/6898526.html，在此感谢郭海东同志，致敬龙神
      * <p>
      * UTF-8 有以下编码规则：
      * 如果一个字节，最高位（第 8 位）为 0，表示这是一个 ASCII 字符（00 - 7F）。可见，所有 ASCII 编码已经是 UTF-8 了。
