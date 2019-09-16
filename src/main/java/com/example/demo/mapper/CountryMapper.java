@@ -1,7 +1,7 @@
 package com.example.demo.mapper;
 
 import com.example.demo.model.param.CountryParam;
-import com.example.demo.model.vo.Country;
+import com.example.demo.model.entity.Country;
 
 import java.util.List;
 

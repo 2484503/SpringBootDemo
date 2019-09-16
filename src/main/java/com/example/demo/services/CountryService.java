@@ -2,7 +2,7 @@ package com.example.demo.services;
 
 import com.example.demo.mapper.CountryMapper;
 import com.example.demo.model.param.CountryParam;
-import com.example.demo.model.vo.Country;
+import com.example.demo.model.entity.Country;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

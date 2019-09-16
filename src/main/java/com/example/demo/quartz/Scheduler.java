@@ -15,7 +15,7 @@ import java.util.Date;
 public class Scheduler {
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
-    //每天3：05执行
+    // 根据cron表达式定时执行
     @Scheduled(cron = "${jobs.schedule}")
     public void testTasks() {
         System.out.println("定时任务执行时间：" + dateFormat.format(new Date()));
