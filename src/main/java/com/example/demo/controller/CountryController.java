@@ -4,10 +4,7 @@ import com.example.demo.model.param.CountryParam;
 import com.example.demo.model.entity.Country;
 import com.example.demo.services.CountryService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -21,7 +18,7 @@ public class CountryController {
     private CountryService countryService;
 
     /**
-     * @api {get} /country/selectCountry 查询国家
+     * @api {POST} /country/selectCountry 查询国家
      * @apiDescription 根据参数，查询国家
      * @apiName selectCountry
      * @apiGroup country
@@ -31,8 +28,8 @@ public class CountryController {
      * @apiSampleRequest http://localhost:8080/country/selectCountry
      * @apiSuccess (success 200) {Country}   country   国家对象信息
      */
-    @GetMapping("selectCountry")
-    List<Country> selectCountry(@ModelAttribute CountryParam countryParam) {
+    @PostMapping("selectCountry")
+    List<Country> selectCountry(@RequestBody CountryParam countryParam) {
 
         List<Country> countryList = countryService.selectCountry(countryParam);
 
