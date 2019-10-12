@@ -1,8 +1,10 @@
 package com.example.demo.services;
 
+import com.example.demo.constants.CacheAnno;
 import com.example.demo.mapper.CountryMapper;
-import com.example.demo.model.param.CountryParam;
 import com.example.demo.model.entity.Country;
+import com.example.demo.model.param.CountryParam;
+import com.google.common.collect.Lists;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -30,5 +32,10 @@ public class CountryService {
         List<Country> countryList = countryMapper.selectCountryByParam(countryParam);
 
         return countryList;
+    }
+
+    @CacheAnno(key = "#id")
+    public List<Country> testId(String id) {
+        return Lists.newArrayList(Country.builder().country("中国").build());
     }
 }
