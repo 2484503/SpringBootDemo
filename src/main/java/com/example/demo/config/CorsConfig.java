@@ -1,3 +1,4 @@
+/*
 package com.example.demo.config;
 
 import org.springframework.context.annotation.Bean;
@@ -6,9 +7,11 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
+*/
 /**
  * 允许跨域配置
- */
+ *//*
+
 @Configuration
 public class CorsConfig {
 
@@ -28,4 +31,4 @@ public class CorsConfig {
         return new CorsFilter(source);
     }
 
-}  
+}  */

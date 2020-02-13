@@ -1,3 +1,4 @@
+/*
 package com.example.demo.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
@@ -12,9 +13,11 @@ import org.springframework.context.annotation.Configuration;
 
 import javax.sql.DataSource;
 
+*/
 /**
  * 开启Druid监控功能，需要在application.yml文件中以spring.datasource开头的信息配置相关信息.
- */
+ *//*
+
 @Configuration
 public class DruidConfig {
     //将设置参数的druid的数据源注册到IOC容器中
@@ -58,3 +61,4 @@ public class DruidConfig {
         return filterRegistrationBean;
     }
 }
+*/

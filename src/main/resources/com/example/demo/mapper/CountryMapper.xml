@@ -25,4 +25,17 @@
             <if test="code != null and code.length()>0">AND code= #{code}</if>
         </trim>
     </select>
+
+    <insert id="insert" parameterType="com.example.demo.model.entity.Country">
+        INSERT country (
+        <include refid="Base_Column_List"/>
+        ) VALUES (
+        #{id},
+        #{country},
+        #{code},
+        #{isValid},
+        #{createTime},
+        #{updateTime}
+        )
+    </insert>
 </mapper>

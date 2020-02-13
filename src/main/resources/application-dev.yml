@@ -1,6 +1,6 @@
 spring:
   datasource:
-    my:
+#    my:
       url: jdbc:mysql://localhost:3306/test?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8
       username: root
       password: root

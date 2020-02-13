@@ -1,3 +1,4 @@
+/*
 package com.example.demo.config;
 
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -12,13 +13,15 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import javax.sql.DataSource;
 
+*/
 /**
  * 数据库配置
  *
  * @author lijn
  * @version 1.0
  * @date 2019/8/9 09:39
- */
+ *//*
+
 @Configuration
 @MapperScan(basePackages = "com.example.demo.mapper",sqlSessionFactoryRef = "myDataSourceSqlSessionFactory")
 public class MyDataSourceConfig {
@@ -44,3 +47,4 @@ public class MyDataSourceConfig {
     }
 
 }
+*/
